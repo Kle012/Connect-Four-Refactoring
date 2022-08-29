@@ -12,7 +12,7 @@ class Game {
     makeBoard() {
         this.board = [];
         for (let y = 0; y < this.HEIGHT; y++) {
-            board.push(Array.from({ length: this.WIDTH }));
+            this.board.push(Array.from({ length: this.WIDTH }));
         }
     }
 
@@ -59,7 +59,6 @@ class Game {
         const piece = document.createElement('div');
         piece.classList.add('piece');
         piece.style.backgroundColor = this.currPlayer.color;
-        piece.style.top = -50 * (y + 2);
 
         const spot = document.getElementById(`${y}-${x}`);
         spot.append(piece);
@@ -67,6 +66,7 @@ class Game {
 
     endGame(msg) {
         alert(msg);
+        const top = document.querySelector("#column-top");
         top.removeEventListener("click", this.handleGameClick); 
     }
 
@@ -110,7 +110,7 @@ class Game {
                 const diagDR = [[y, x], [y + 1, x + 1], [y+ 2,x + 2], [y + 3, x + 3]];
                 const diagDL = [[y, x], [y + 1, x - 1], [y+ 2,x - 2], [y + 3, x - 3]];
                         
-                if (_win(horiz) || _win(vert) || _w(diagDR) || _win(diagDL)) {
+                if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
                     return true;
                 }
             }
